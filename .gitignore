@@ -1,0 +1,7 @@
+.idea
+ext/Makefile
+ext/*.pkg
+ext/*.deb
+ext/tmp
+ext/wkhtmltopdf
+*.gem

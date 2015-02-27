@@ -1,0 +1,19 @@
+TARGET = wkhtmltopdf
+TMPDIR = tmp
+
+.PHONY: clean unpack tmp copy
+
+$(DOWNLOADED):
+	curl -L $(URL) -o $(DOWNLOADED)
+
+clean:
+	rm -rf $(TMPDIR) $(DOWNLOADED)
+
+tmp:
+	rm -rf $(TMPDIR)
+	mkdir $(TMPDIR)
+
+copy:
+	cp $(BINARY) $(DESTDIR)wkhtmltopdf
+
+
