@@ -1,5 +1,3 @@
-TARGET = wkhtmltopdf
-TMPDIR = tmp
 
 .PHONY: clean unpack tmp copy
 
