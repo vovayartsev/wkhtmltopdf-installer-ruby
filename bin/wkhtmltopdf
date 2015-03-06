@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/wkhtmltopdf_installer'
+exec WkhtmltopdfInstaller.wkhtmltopdf_path, *ARGV

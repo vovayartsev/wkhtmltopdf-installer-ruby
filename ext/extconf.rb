@@ -20,10 +20,6 @@ def version
   WkhtmltopdfInstaller::VERSION
 end
 
-def target
-  WkhtmltopdfInstaller.binary_full_path
-end
-
 def makefile_dir
   File.dirname(__FILE__)
 end
@@ -39,7 +35,8 @@ end
 # The main Makefile contains settings only. The actual work is done by os-specific Makefile.xxxxx files
 File.write "#{makefile_dir}/Makefile", <<-EOF
 URL = #{package_url}
-TARGET = #{target}
+LIBEXEC = #{WkhtmltopdfInstaller.libexec_dir}
+TARGET = #{WkhtmltopdfInstaller.wkhtmltopdf_path}
 TMPDIR = #{Dir.mktmpdir}
 all: unpack
 install: copy clean

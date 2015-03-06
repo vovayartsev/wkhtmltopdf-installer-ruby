@@ -8,10 +8,10 @@ clean:
 	rm -rf $(TMPDIR) $(DOWNLOADED)
 
 tmp:
-	rm -rf $(TMPDIR)
-	mkdir $(TMPDIR)
+	mkdir -p $(TMPDIR)
 
 copy:
-	cp $(BINARY) $(DESTDIR)wkhtmltopdf
+	mkdir -p $(LIBEXEC)
+	cp $(BINARY) $(TARGET)
 
 

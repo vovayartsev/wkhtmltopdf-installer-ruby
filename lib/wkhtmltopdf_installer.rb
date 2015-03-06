@@ -3,14 +3,14 @@ require_relative 'wkhtmltopdf_installer/version'
 module WkhtmltopdfInstaller
   extend self
 
-  def ext_dir
-    "#{File.dirname(__FILE__)}/../ext"
+  def libexec_dir
+    "#{File.dirname(__FILE__)}/../libexec"
   end
 
-  def binary_full_path
-    "#{ext_dir}/wkhtmltopdf"
+  def wkhtmltopdf_path
+    "#{libexec_dir}/wkhtmltopdf"
   end
 end
 
-# ... so that system('wkhtmltopdf') just works
-ENV['PATH'] = WkhtmltopdfInstaller.ext_dir + ':' + ENV['PATH']
+ENV['PATH'] = [WkhtmltopdfInstaller.libexec_dir, ENV['PATH']].compact.join(':')
+
