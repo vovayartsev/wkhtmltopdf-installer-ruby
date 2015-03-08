@@ -1,4 +1,6 @@
 # wkhtmltopdf-installer-ruby
+[![Build Status](https://semaphoreci.com/api/v1/projects/cff505e1-aa02-441e-8b7f-df4cc1342939/367628/badge.png)](https://semaphoreci.com/vovayartsev/wkhtmltopdf-installer-ruby)      
+
 Downloads and installs wkhtmltopdf from the official website
 
 ## Usage
