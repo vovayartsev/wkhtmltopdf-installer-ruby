@@ -29,7 +29,8 @@ end
 # "http://downloads.sourceforge.net/project/wkhtmltopdf/#{version}/wkhtmltox-#{version}_linux-trusty-amd64.deb"
 # "http://downloads.sourceforge.net/project/wkhtmltopdf/#{version}/wkhtmltox-#{version}_linux-trusty-i386.deb"
 def package_url
-  "http://downloads.sourceforge.net/project/wkhtmltopdf/#{version}/wkhtmltox-#{version}_#{probe.platform}.#{probe.ext}"
+  major_version = version.gsub(/^(\d+\.\d+).*$/, '\1')
+  "http://download.gna.org/wkhtmltopdf/#{major_version}/#{version}/wkhtmltox-#{version}_#{probe.platform}.#{probe.ext}"
 end
 
 # The main Makefile contains settings only. The actual work is done by os-specific Makefile.xxxxx files
