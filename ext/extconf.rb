@@ -25,9 +25,9 @@ def makefile_dir
 end
 
 # Some examples:
-# "http://downloads.sourceforge.net/project/wkhtmltopdf/#{version}/wkhtmltox-#{version}_osx-cocoa-x86-64.pkg"
-# "http://downloads.sourceforge.net/project/wkhtmltopdf/#{version}/wkhtmltox-#{version}_linux-trusty-amd64.deb"
-# "http://downloads.sourceforge.net/project/wkhtmltopdf/#{version}/wkhtmltox-#{version}_linux-trusty-i386.deb"
+# "http://download.gna.org/wkhtmltopdf/0.12/#{version}/wkhtmltox-#{version}_osx-cocoa-x86-64.pkg"
+# "http://download.gna.org/wkhtmltopdf/0.12/#{version}/wkhtmltox-#{version}_linux-trusty-amd64.deb"
+# "http://download.gna.org/wkhtmltopdf/0.12/#{version}/wkhtmltox-#{version}_linux-trusty-i386.deb"
 def package_url
   major_version = version.gsub(/^(\d+\.\d+).*$/, '\1')
   "http://download.gna.org/wkhtmltopdf/#{major_version}/#{version}/wkhtmltox-#{version}_#{probe.platform}.#{probe.ext}"
