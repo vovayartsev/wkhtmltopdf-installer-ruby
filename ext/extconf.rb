@@ -4,13 +4,15 @@ require 'ostruct'
 require_relative '../lib/wkhtmltopdf_installer'
 
 def probe
+  return OpenStruct.new(script: 'linux', platform: 'linux-generic-amd64', ext: 'tar.xz')
+
   @probe ||= case RUBY_PLATFORM
                when /x86_64-darwin.*/
                  OpenStruct.new(script: 'macos', platform: 'osx-cocoa-x86-64', ext: 'pkg')
                when /x86_64-linux/
-                 OpenStruct.new(script: 'linux', platform: 'linux-trusty-amd64', ext: 'deb')
+                 OpenStruct.new(script: 'linux', platform: 'linux-generic-amd64', ext: 'tar.xz')
                when /i[3456]86-linux/
-                 OpenStruct.new(script: 'linux', platform: 'linux-trusty-i386', ext: 'deb')
+                 OpenStruct.new(script: 'linux', platform: 'linux-generic-i386', ext: 'tar.xz')
                else
                  raise NotImplementedError "Unsupported ruby platform #{RUBY_PLATFORM}"
              end
@@ -26,8 +28,8 @@ end
 
 # Some examples:
 # "http://download.gna.org/wkhtmltopdf/0.12/#{version}/wkhtmltox-#{version}_osx-cocoa-x86-64.pkg"
-# "http://download.gna.org/wkhtmltopdf/0.12/#{version}/wkhtmltox-#{version}_linux-trusty-amd64.deb"
-# "http://download.gna.org/wkhtmltopdf/0.12/#{version}/wkhtmltox-#{version}_linux-trusty-i386.deb"
+# "http://download.gna.org/wkhtmltopdf/0.12/#{version}/wkhtmltox-#{version}_linux-generic-amd64.deb"
+# "http://download.gna.org/wkhtmltopdf/0.12/#{version}/wkhtmltox-#{version}_linux-generic-i386.deb"
 def package_url
   major_version = version.gsub(/^(\d+\.\d+).*$/, '\1')
   "http://download.gna.org/wkhtmltopdf/#{major_version}/#{version}/wkhtmltox-#{version}_#{probe.platform}.#{probe.ext}"
