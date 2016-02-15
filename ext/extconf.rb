@@ -4,8 +4,6 @@ require 'ostruct'
 require_relative '../lib/wkhtmltopdf_installer'
 
 def probe
-  return OpenStruct.new(script: 'linux', platform: 'linux-generic-amd64', ext: 'tar.xz')
-
   @probe ||= case RUBY_PLATFORM
                when /x86_64-darwin.*/
                  OpenStruct.new(script: 'macos', platform: 'osx-cocoa-x86-64', ext: 'pkg')
