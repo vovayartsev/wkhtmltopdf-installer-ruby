@@ -6,7 +6,7 @@ payload = $(pkg_content)/Payload
 app_tar_xz = $(TMPDIR)/usr/local/share/wkhtmltox-installer/app.tar.xz
 
 unpack: tmp $(DOWNLOADED)
-	pkgutil --expand $(DOWNLOADED) $(pkg_content)
-	tar -xf $(payload) -C $(TMPDIR)
-	tar -xzf $(app_tar_xz) -C $(TMPDIR)
+	/usr/sbin/pkgutil --expand $(DOWNLOADED) $(pkg_content)
+	/usr/bin/tar -xf $(payload) -C $(TMPDIR)
+	/usr/bin/tar -xzf $(app_tar_xz) -C $(TMPDIR)
 
