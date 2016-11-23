@@ -24,3 +24,7 @@ The gem also provides a shim, so that it works in the shell too.
 ## Contribution
 Pull requests are very welcome.
 Pull requests with updates in version.rb are welcome too.
+
+## See also
+
+* a similar [NPM package](https://www.npmjs.com/package/wkhtmltopdf-installer)
