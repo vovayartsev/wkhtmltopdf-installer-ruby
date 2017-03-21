@@ -1,10 +1,17 @@
 require 'open-uri'
 require 'wkhtmltopdf_installer'
 
-OFFICIAL_DOWNLOADS_PAGE = 'http://wkhtmltopdf.org/downloads.html'
+OPEN_URI_OPTIONS = begin
+  require 'open_uri_redirections'
+  {:allow_redirections => :all}
+rescue LoadError
+  {}
+end
+
+OFFICIAL_DOWNLOADS_PAGE = 'https://wkhtmltopdf.org/downloads.html'
 
 def up_to_date?
-  content = open(OFFICIAL_DOWNLOADS_PAGE) { |f| f.read }
+  content = open(OFFICIAL_DOWNLOADS_PAGE, OPEN_URI_OPTIONS) { |f| f.read }
   if content =~ %r{The current stable series is <strong>([\d\.]+)</strong>}
     $1 == WkhtmltopdfInstaller::VERSION
   else
