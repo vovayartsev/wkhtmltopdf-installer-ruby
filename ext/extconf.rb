@@ -25,12 +25,12 @@ def makefile_dir
 end
 
 # Some examples:
-# "https://downloads.wkhtmltopdf.org/0.12/#{version}/wkhtmltox-#{version}_osx-cocoa-x86-64.pkg"
-# "https://downloads.wkhtmltopdf.org/0.12/#{version}/wkhtmltox-#{version}_linux-trusty-amd64.deb"
-# "https://downloads.wkhtmltopdf.org/0.12/#{version}/wkhtmltox-#{version}_linux-trusty-i386.deb"
+# "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/#{version}/wkhtmltox-#{version}_osx-cocoa-x86-64.pkg"
+# "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/#{version}/wkhtmltox-#{version}_linux-trusty-amd64.deb"
+# "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/#{version}/wkhtmltox-#{version}_linux-trusty-i386.deb"
 def package_url
   major_version = version.gsub(/^(\d+\.\d+).*$/, '\1')
-  "https://downloads.wkhtmltopdf.org/#{major_version}/#{version}/wkhtmltox-#{version}_#{probe.platform}.#{probe.ext}"
+  "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/#{version}/wkhtmltox-#{version}_#{probe.platform}.#{probe.ext}"
 end
 
 # The main Makefile contains settings only. The actual work is done by os-specific Makefile.xxxxx files
