@@ -6,18 +6,18 @@ require_relative '../lib/wkhtmltopdf_installer'
 def probe
   @probe ||= case RUBY_PLATFORM
                when /x86_64-darwin.*/
-                 OpenStruct.new(script: 'macos', platform: 'osx-cocoa-x86-64', ext: 'pkg')
+                 OpenStruct.new(script: 'macos', platform: 'macos_cocoa', ext: 'pkg')
                when /x86_64-linux/
-                 OpenStruct.new(script: 'linux', platform: 'linux-generic-amd64', ext: 'tar.xz')
+                 OpenStruct.new(script: 'linux', platform: 'linux_amd64', ext: 'deb')
                when /i[3456]86-linux/
-                 OpenStruct.new(script: 'linux', platform: 'linux-generic-i386', ext: 'tar.xz')
+                 OpenStruct.new(script: 'linux', platform: 'linux_i386', ext: 'deb')
                else
                  raise NotImplementedError "Unsupported ruby platform #{RUBY_PLATFORM}"
              end
 end
 
 def version
-  WkhtmltopdfInstaller::VERSION
+  WkhtmltopdfInstaller::GEM_VERSION
 end
 
 def makefile_dir
@@ -25,13 +25,12 @@ def makefile_dir
 end
 
 # Some examples:
-# "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/#{version}/wkhtmltox-#{version}_osx-cocoa-x86-64.pkg"
-# "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/#{version}/wkhtmltox-#{version}_linux-generic-amd64.tar.xz"
-# "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/#{version}/wkhtmltox-#{version}_linux-generic-i386.tar.xz"
+# "https://github.com/vovayartsev/wkhtmltopdf-installer-ruby/releases/download/0.12.5.2/wkhtmltox-0.12.5.2-linux_amd64.deb"
+# "https://github.com/vovayartsev/wkhtmltopdf-installer-ruby/releases/download/0.12.5.2/wkhtmltox-0.12.5.2-linux_i386.deb"
+# "https://github.com/vovayartsev/wkhtmltopdf-installer-ruby/releases/download/0.12.5.2/wkhtmltox-0.12.5.2-macos_cocoa.pkg"
 
 def package_url
-  # major_version = version.gsub(/^(\d+\.\d+).*$/, '\1')
-  "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/#{version}/wkhtmltox-#{version}_#{probe.platform}.#{probe.ext}"
+  "https://github.com/vovayartsev/wkhtmltopdf-installer-ruby/releases/download/#{version}/wkhtmltox-#{version}-#{probe.platform}.#{probe.ext}"
 end
 
 # The main Makefile contains settings only. The actual work is done by os-specific Makefile.xxxxx files

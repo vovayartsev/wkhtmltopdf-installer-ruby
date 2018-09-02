@@ -3,7 +3,7 @@ require_relative 'lib/wkhtmltopdf_installer/version'
 Gem::Specification.new do |s|
   s.name        = 'wkhtmltopdf-installer'
   s.version     = WkhtmltopdfInstaller::GEM_VERSION
-  s.date        = '2015-01-19'
+  s.date        = '2018-09-02'
   s.summary     = 'Light-weight cross-platform wkhtmltopdf binary installer'
   s.description = "Downloads wkhtmltopdf binary during 'Building native extension...' phase"
   s.authors     = ['Vladimir Yartsev']
