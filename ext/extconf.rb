@@ -17,7 +17,7 @@ def probe
 end
 
 def version
-  WkhtmltopdfInstaller::GEM_VERSION
+  WkhtmltopdfInstaller::BINARIES_VERSION
 end
 
 def makefile_dir
@@ -25,9 +25,9 @@ def makefile_dir
 end
 
 # Some examples:
-# "https://github.com/vovayartsev/wkhtmltopdf-installer-ruby/releases/download/0.12.5.2/wkhtmltox-0.12.5.2-linux_amd64.deb"
-# "https://github.com/vovayartsev/wkhtmltopdf-installer-ruby/releases/download/0.12.5.2/wkhtmltox-0.12.5.2-linux_i386.deb"
-# "https://github.com/vovayartsev/wkhtmltopdf-installer-ruby/releases/download/0.12.5.2/wkhtmltox-0.12.5.2-macos_cocoa.pkg"
+# "https://github.com/vovayartsev/wkhtmltopdf-installer-ruby/releases/download/0.12.6-1/wkhtmltox-0.12.6-1-linux_amd64.deb"
+# "https://github.com/vovayartsev/wkhtmltopdf-installer-ruby/releases/download/0.12.6-1/wkhtmltox-0.12.6-1-linux_i386.deb"
+# "https://github.com/vovayartsev/wkhtmltopdf-installer-ruby/releases/download/0.12.6-1/wkhtmltox-0.12.6-1-macos_cocoa.pkg"
 
 def package_url
   "https://github.com/vovayartsev/wkhtmltopdf-installer-ruby/releases/download/#{version}/wkhtmltox-#{version}-#{probe.platform}.#{probe.ext}"
