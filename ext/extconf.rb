@@ -36,13 +36,13 @@ def package_url
 end
 
 # The main Makefile contains settings only. The actual work is done by os-specific Makefile.xxxxx files
-File.write "#{makefile_dir}/Makefile", <<~EOF
-  URL = #{package_url}
-  LIBEXEC = #{WkhtmltopdfInstaller.libexec_dir}
-  TARGET = #{WkhtmltopdfInstaller.wkhtmltopdf_path}
-  TMPDIR = #{Dir.mktmpdir}
-  all: unpack
-  install: copy clean
-  include Makefile.#{probe.script}
-  include Makefile.common
+File.write "#{makefile_dir}/Makefile", <<-EOF
+URL = #{package_url}
+LIBEXEC = #{WkhtmltopdfInstaller.libexec_dir}
+TARGET = #{WkhtmltopdfInstaller.wkhtmltopdf_path}
+TMPDIR = #{Dir.mktmpdir}
+all: unpack
+install: copy clean
+include Makefile.#{probe.script}
+include Makefile.common
 EOF
