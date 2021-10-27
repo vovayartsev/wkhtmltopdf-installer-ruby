@@ -5,36 +5,32 @@ require_relative '../lib/wkhtmltopdf_installer'
 
 def probe
   @probe ||= case RUBY_PLATFORM
-               when /x86_64-darwin.*/
-                 OpenStruct.new(script: 'macos', platform: 'osx-cocoa-x86-64', ext: 'pkg')
+               when /-darwin.*/
+                 OpenStruct.new(script: 'macos', platform: 'macos-cocoa', ext: 'pkg', release: 2)
                when /x86_64-linux/
-                 OpenStruct.new(script: 'linux', platform: 'linux-trusty-amd64', ext: 'deb')
+                 OpenStruct.new(script: 'linux', platform: 'stretch_amd64', ext: 'deb', release: 1)
                when /i[3456]86-linux/
-                 OpenStruct.new(script: 'linux', platform: 'linux-trusty-i386', ext: 'deb')
+                 OpenStruct.new(script: 'linux', platform: 'stretch_i386', ext: 'deb', release: 1)
                else
-                 raise NotImplementedError "Unsupported ruby platform #{RUBY_PLATFORM}"
+                 raise StandardError, "Unsupported ruby platform: #{RUBY_PLATFORM}"
              end
 end
 
-def version
-  WkhtmltopdfInstaller::VERSION
-end
 
-def makefile_dir
-  File.dirname(__FILE__)
-end
 
-# Some examples:
-# "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/#{version}/wkhtmltox-#{version}_osx-cocoa-x86-64.pkg"
-# "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/#{version}/wkhtmltox-#{version}_linux-trusty-amd64.deb"
-# "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/#{version}/wkhtmltox-#{version}_linux-trusty-i386.deb"
+# https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.stretch_amd64.deb
+# https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.stretch_i386.deb
+# https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-2/wkhtmltox_0.12.6-2.macos-cocoa.pkg
 def package_url
-  major_version = version.gsub(/^(\d+\.\d+).*$/, '\1')
-  "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/#{version}/wkhtmltox-#{version}_#{probe.platform}.#{probe.ext}"
+  version = WkhtmltopdfInstaller::VERSION
+  version = "#{version}-#{probe.release}"
+  filename = "wkhtmltox-#{version}.#{probe.platform}.#{probe.ext}"
+
+  "https://github.com/wkhtmltopdf/packaging/releases/download/#{version}/#{filename}"
 end
 
 # The main Makefile contains settings only. The actual work is done by os-specific Makefile.xxxxx files
-File.write "#{makefile_dir}/Makefile", <<-EOF
+File.write "#{File.dirname(__FILE__)}/Makefile", <<-EOF
 URL = #{package_url}
 LIBEXEC = #{WkhtmltopdfInstaller.libexec_dir}
 TARGET = #{WkhtmltopdfInstaller.wkhtmltopdf_path}
