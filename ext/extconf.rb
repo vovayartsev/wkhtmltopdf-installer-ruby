@@ -7,14 +7,14 @@ require_relative '../lib/wkhtmltopdf_installer'
 
 def probe
   @probe ||= case RUBY_PLATFORM
-             when /x86_64-darwin.*/
+             when /darwin.*/ # both M1 ARM and x86 are supported for macos
                OpenStruct.new(script: 'macos', platform: 'macos_cocoa', ext: 'pkg')
              when /x86_64-linux/
                OpenStruct.new(script: 'linux', platform: 'linux_amd64', ext: 'deb')
              when /i[3456]86-linux/
                OpenStruct.new(script: 'linux', platform: 'linux_i386', ext: 'deb')
              else
-               raise NotImplementedError "Unsupported ruby platform #{RUBY_PLATFORM}"
+               raise NotImplementedError, "Unsupported ruby platform #{RUBY_PLATFORM}"
              end
 end
 
