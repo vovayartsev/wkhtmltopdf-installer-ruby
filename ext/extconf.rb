@@ -11,6 +11,8 @@ def probe
                OpenStruct.new(script: 'macos', platform: 'macos_cocoa', ext: 'pkg')
              when /x86_64-linux/
                OpenStruct.new(script: 'linux', platform: 'linux_amd64', ext: 'deb')
+             when /aarch64-linux/
+               OpenStruct.new(script: 'linux', platform: 'linux_arm64', ext: 'deb')
              when /i[3456]86-linux/
                OpenStruct.new(script: 'linux', platform: 'linux_i386', ext: 'deb')
              else
